@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML to PDF Converter</title>
+    <title>File Converter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,29 +27,72 @@
             margin-bottom: 25px;
         }
 
-        input[type="file"] {
-            display: block;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: calc(100% - 22px);
-            /* Adjust for padding and border */
+        .converter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
+        .converter-card {
+            display: flex;
+            align-items: center;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+            padding: 20px 24px;
+            text-decoration: none;
+            color: #222;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+            border: 1px solid #e0e0e0;
+            position: relative;
         }
 
-        input[type="submit"]:hover {
-            background-color: #0056b3;
+        .converter-card:hover {
+            background: #eaf4ff;
+            box-shadow: 0 4px 16px rgba(0, 123, 255, 0.1);
+            transform: translateY(-2px) scale(1.02);
+            border-color: #90caf9;
+        }
+
+        .converter-card .icon {
+            font-size: 2.2rem;
+            margin-right: 22px;
+            flex-shrink: 0;
+        }
+
+        .converter-card .title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-right: 18px;
+            min-width: 140px;
+        }
+
+        .converter-card .desc {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+            }
+
+            .converter-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px;
+            }
+
+            .converter-card .icon {
+                margin-bottom: 8px;
+                margin-right: 0;
+            }
+
+            .converter-card .title {
+                margin-right: 0;
+                margin-bottom: 4px;
+            }
         }
 
         .message {
@@ -75,13 +118,29 @@
 
 <body>
     <div class="container">
-        <h2>Convert HTML to PDF</h2>
-        <form action="process_upload.php" method="post" enctype="multipart/form-data">
-            <label for="html_file">Select HTML file to upload:</label>
-            <input type="file" name="html_file" id="html_file" accept=".html,.htm" required>
-            <input type="submit" value="Convert to PDF">
-        </form>
-
+        <h2>File Converter</h2>
+        <div class="converter-list">
+            <a class="converter-card" href="image_to_pdf.php">
+                <span class="icon">🖼️→📄</span>
+                <span class="title">Image → PDF</span>
+                <span class="desc">Convert images (JPG, PNG, GIF) to PDF</span>
+            </a>
+            <a class="converter-card" href="pdf_to_image.php">
+                <span class="icon">📄→🖼️</span>
+                <span class="title">PDF → JPG/PNG</span>
+                <span class="desc">Convert PDF pages to images</span>
+            </a>
+            <a class="converter-card" href="excel_to_csv.php">
+                <span class="icon">📊→📄</span>
+                <span class="title">Excel → CSV</span>
+                <span class="desc">Convert Excel files to CSV format</span>
+            </a>
+            <a class="converter-card" href="archive_extractor.php">
+                <span class="icon">🗜️</span>
+                <span class="title">ZIP/RAR Extractor</span>
+                <span class="desc">Extract ZIP or RAR archives</span>
+            </a>
+        </div>
         <?php
         if (isset($_GET['message'])) {
             $message = htmlspecialchars($_GET['message']);
