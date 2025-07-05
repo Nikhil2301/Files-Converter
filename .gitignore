@@ -1,0 +1,32 @@
+# Composer dependencies
+/vendor/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE and editor folders
+/.vscode/
+/.idea/
+
+# Log files
+*.log
+
+# Environment files
+.env
+
+# PHPStorm
+*.iml
+
+# Node modules (if any)
+/node_modules/
+
+# Cache
+/cache/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Uploaded files (if you store them)
+/uploads/
